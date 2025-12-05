@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nuit de l'Info 2025 - Nexus Connect Portal">
+    <meta name="theme-color" content="#0a0e27">
+    <title>Nuit de l'Info 2025 - Nexus Connect</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0e27'/><circle cx='50' cy='50' r='30' fill='none' stroke='%2300ffcc' stroke-width='2'/><circle cx='50' cy='50' r='20' fill='none' stroke='%23ff00ff' stroke-width='1.5'/></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ffcc;
+            --primary-dark: #00cc99;
+            --secondary: #ff00ff;
+            --secondary-light: #ff33ff;
+            --accent-gold: #ffd700;
+            --accent-emerald: #50ff99;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0ff;
+            --bg-dark: #0a0e27;
+            --bg-darker: #050710;
+            --border-color: #1a2555;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+            user-select: none;
+        }
+
+        /* Cosmic Background Animation */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(0, 255, 204, 0.05) 0%, rgba(255, 0, 255, 0.03) 30%, var(--bg-darker) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nebula-particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        .glow-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 204, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        main {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 14, 39, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            transition: all 0.6s ease;
+        }
+
+        .mission-selector {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        select {
+            padding: 0.7rem 1rem;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--text-primary);
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 500;
+        }
+
+        select:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        /* Content Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: heroFadeIn 1s ease forwards;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 42%;
+            transition: width 0.6s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(26, 37, 85, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            animation: formSlideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes formSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 255, 204, 0.05);
+            color: var(--text-primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .honeypot {
+            display: none;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        /* Mission-specific styles will be applied dynamically */
+
+        /* Thank You Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: modalFadeIn 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(5px);
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 37, 85, 0.8), rgba(50, 30, 80, 0.6));
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            max-width: 500px;
+            text-align: center;
+            animation: modalSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: scale(0.8) translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-glow {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.3), transparent);
+            margin: 1rem auto;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .modal-button {
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 0.8rem 2rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .mission-selector {
+                justify-content: stretch;
+            }
+
+            select {
+                flex: 1;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        :focus-visible {
+            outline: 2px dashed var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg"></div>
+    <div class="glow-grid"></div>
+
+    <main>
+        <!-- Header with Mission Selector -->
+        <header role="banner">
+            <div class="header-content">
+                <div class="logo">✦ NEXUS</div>
+                <div class="mission-selector">
+                    <label for="mission-select" class="sr-only">Select a mission</label>
+                    <select id="mission-select" aria-label="Select Mission">
+                        <option value="contact">Contact</option>
+                        <option value="donate">Donate</option>
+                        <option value="volunteer">Volunteer</option>
+                        <option value="info">Info</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero" role="region" aria-label="Hero section">
+                <h1 id="hero-title">Nuit de l'Informatique 2025 - Nexus Connect</h1>
+                <p id="hero-subtitle">Rejoignez notre quête collaborative</p>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span id="progress-text">Ton soutien booste notre projet 2025:</span>
+                        <span id="progress-value">42%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form Section -->
+            <section class="form-section" role="region" aria-label="Action form">
+                <form id="action-form" novalidate>
+                    <div id="form-content"></div>
+
+                    <!-- Honeypot -->
+                    <input type="text" name="website" class="honeypot" aria-hidden="true" tabindex="-1" autocomplete="off">
+
+                    <div class="button-group">
+                        <button type="submit" id="submit-btn" aria-label="Submit form">Submit</button>
+                        <button type="reset" class="btn-secondary" aria-label="Reset form">Reset</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Thank You Modal -->
+    <div class="modal" id="thank-you-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-glow"></div>
+            <h2 id="modal-title">GG!</h2>
+            <p id="modal-message"></p>
+            <button class="modal-button" onclick="closeModal()">Continuer l'aventure</button>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
+        // Mission Configurations
+        const missions = {
+            contact: {
+                title: 'Nuit de l'Informatique 2025 - Contactez-nous',
+                subtitle: 'Envoyez un message à notre équipe Nexus',
+                buttonText: 'Transmit Echo',
+                buttonClass: 'contact-btn',
+                bgColor: '#0a1a3f',
+                accentColor: '#00ffff',
+                formFields: [
+                    { name: 'name', label: 'Nom', type: 'text', required: true },
+                    { name: 'email', label: 'Email', type: 'email', required: true },
+                    { name: 'message', label: 'Message', type: 'textarea', required: true }
+                ],
+                thankYouMessage: 'Ton message a été transmis dans le réseau Nexus!',
+                animation: 'contactTransition'
+            },
+            donate: {
+                title: 'Nuit de l'Info 2025 - Le Trésor Nexus',
+                subtitle: 'Forgez votre don pour notre quête',
+                buttonText: 'Forge Your Gift',
+                buttonClass: 'donate-btn',
+                bgColor: '#2a1a0f',
+                accentColor: '#ffd700',
+                formFields: [
+                    { name: 'name', label: 'Nom du Donateur', type: 'text', required: true },
+                    { name: 'email', label: 'Email', type: 'email', required: true },
+                    { name: 'amount', label: 'Montant (€)', type: 'number', min: 1, required: true },
+                    { name: 'recurring', label: 'Don Récurrent', type: 'checkbox' }
+                ],
+                thankYouMessage: 'Merci! Ton trésor alimente notre quête 2025!',
+                animation: 'donateTransition'
+            },
+            volunteer: {
+                title: 'Nuit de l'Info 2025 - Guilde des Chevaliers',
+                subtitle: 'Rejoignez notre ordre de développeurs',
+                buttonText: 'Join the Knights',
+                buttonClass: 'volunteer-btn',
+                bgColor: '#0f1a0f',
+                accentColor: '#50ff99',
+                formFields: [
+                    { name: 'name', label: 'Nom du Guerrier', type: 'text', required: true },
+                    { name: 'email', label: 'Email', type: 'email', required: true },
+                    { name: 'skills', label: 'Tes Compétences', type: 'textarea', required: true },
+                    { name: 'availability', label: 'Disponibilité', type: 'select', options: ['Full-time', 'Part-time', 'Weekend'] }
+                ],
+                thankYouMessage: 'Bienvenue Chevalier! Tu es maintenant enregistré dans la Guilde!',
+                animation: 'volunteerTransition'
+            },
+            info: {
+                title: 'Nuit de l\'Informatique 2025 - Archive Holistique',
+                subtitle: 'Explorez les mystères de Nexus',
+                buttonText: 'Seek Nexus Wisdom',
+                buttonClass: 'info-btn',
+                bgColor: '#1a0f2a',
+                accentColor: '#00ffcc',
+                formFields: [
+                    { name: 'name', label: 'Ton Nom', type: 'text', required: true },
+                    { name: 'email', label: 'Email', type: 'email', required: true },
+                    { name: 'interests', label: 'Thèmes d\'Intérêt', type: 'textarea', placeholder: 'IA, Blockchain, IoT, etc.' }
+                ],
+                thankYouMessage: 'La sagesse Nexus a été envoyée à ton email!',
+                animation: 'infoTransition'
+            }
+        };
+
+        // State
+        let currentMission = 'contact';
+        let transitionInProgress = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeParticles();
+            setupMissionSelector();
+            loadMission('contact');
+            setupFormValidation();
+        });
+
+        // Create nebula particles
+        function initializeParticles() {
+            const bg = document.querySelector('.cosmic-bg');
+            const particleCount = window.innerWidth < 768 ? 3 : 6;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'nebula-particle';
+                particle.style.width = Math.random() * 300 + 100 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.background = [
+                    'rgba(0, 255, 204, 0.15)',
+                    'rgba(255, 0, 255, 0.15)',
+                    'rgba(255, 215, 0, 0.1)'
+                ][Math.floor(Math.random() * 3)];
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+                bg.appendChild(particle);
+            }
+        }
+
+        // Mission selector
+        function setupMissionSelector() {
+            const selector = document.getElementById('mission-select');
+            selector.addEventListener('change', (e) => {
+                if (!transitionInProgress) {
+                    loadMission(e.target.value);
+                }
+            });
+        }
+
+        // Load mission with animation
+        function loadMission(mission) {
+            if (transitionInProgress || mission === currentMission) return;
+            transitionInProgress = true;
+
+            const config = missions[mission];
+            
+            // Animate out
+            gsap.to('.hero', {
+                opacity: 0,
+                y: -20,
+                duration: 0.4,
+                ease: 'power2.in'
+            });
+
+            gsap.to('.form-section', {
+                opacity: 0,
+                y: 20,
+                duration: 0.4,
+                ease: 'power2.in',
+                onComplete: () => {
+                    // Update styles
+                    document.documentElement.style.setProperty('--primary', config.accentColor);
+                    updateFormContent(mission, config);
+                    
+                    // Update header
+                    document.getElementById('hero-title').textContent = config.title;
+                    document.getElementById('hero-subtitle').textContent = config.subtitle;
+                    document.getElementById('submit-btn').textContent = config.buttonText;
+                    document.getElementById('submit-btn').className = config.buttonClass;
+
+                    // Apply mission-specific effects
+                    applyMissionEffects(mission);
+
+                    // Animate in
+                    gsap.from('.hero', {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.6,
+                        delay: 0.2,
+                        ease: 'cubic.out'
+                    });
+
+                    gsap.from('.form-section', {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.6,
+                        delay: 0.3,
+                        ease: 'cubic.out',
+                        onComplete: () => {
+                            transitionInProgress = false;
+                        }
+                    });
+
+                    currentMission = mission;
+                }
+            });
+        }
+
+        // Update form content dynamically
+        function updateFormContent(mission, config) {
+            const formContent = document.getElementById('form-content');
+            formContent.innerHTML = '';
+
+            config.formFields.forEach(field => {
+                const group = document.createElement('div');
+                group.className = 'form-group';
+
+                if (field.type === 'checkbox') {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.name = field.name;
+                    input.id = field.name;
+                    label.htmlFor = field.name;
+                    label.textContent = field.label;
+                    label.prepend(input);
+                    group.appendChild(label);
+                } else if (field.type === 'textarea') {
+                    const label = document.createElement('label');
+                    label.htmlFor = field.name;
+                    label.textContent = field.label;
+                    const textarea = document.createElement('textarea');
+                    textarea.name = field.name;
+                    textarea.id = field.name;
+                    textarea.required = field.required;
+                    textarea.placeholder = field.placeholder || '';
+                    group.appendChild(label);
+                    group.appendChild(textarea);
+                } else if (field.type === 'select') {
+                    const label = document.createElement('label');
+                    label.htmlFor = field.name;
+                    label.textContent = field.label;
+                    const select = document.createElement('select');
+                    select.name = field.name;
+                    select.id = field.name;
+                    field.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.textContent = opt;
+                        select.appendChild(option);
+                    });
+                    group.appendChild(label);
+                    group.appendChild(select);
+                } else {
+                    const label = document.createElement('label');
+                    label.htmlFor = field.name;
+                    label.textContent = field.label;
+                    const input = document.createElement('input');
+                    input.type = field.type;
+                    input.name = field.name;
+                    input.id = field.name;
+                    input.required = field.required;
+                    if (field.min) input.min = field.min;
+                    group.appendChild(label);
+                    group.appendChild(input);
+                }
+
+                formContent.appendChild(group);
+            });
+        }
+
+        // Mission-specific visual effects
+        function applyMissionEffects(mission) {
+            const header = document.querySelector('header');
+            const hero = document.querySelector('.hero');
+            const form = document.querySelector('.form-section');
+
+            switch(mission) {
+                case 'donate':
+                    createCoinParticles();
+                    header.style.background = 'rgba(42, 26, 15, 0.6)';
+                    form.style.background = 'rgba(42, 26, 15, 0.3)';
+                    break;
+                case 'volunteer':
+                    createBrickMasonry();
+                    header.style.background = 'rgba(15, 26, 15, 0.6)';
+                    form.style.background = 'rgba(15, 26, 15, 0.3)';
+                    break;
+                case 'contact':
+                    createDataStreams();
+                    header.style.background = 'rgba(10, 26, 63, 0.6)';
+                    form.style.background = 'rgba(10, 26, 63, 0.3)';
+                    break;
+                case 'info':
+                    createCrystalOrbs();
+                    header.style.background = 'rgba(26, 15, 42, 0.6)';
+                    form.style.background = 'rgba(26, 15, 42, 0.3)';
+                    break;
+            }
+        }
+
+        // Create floating coin particles for donate mission
+        function createCoinParticles() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 8; i++) {
+                const coin = document.createElement('div');
+                coin.style.position = 'fixed';
+                coin.style.width = '30px';
+                coin.style.height = '30px';
+                coin.style.left = Math.random() * 100 + '%';
+                coin.style.top = '-30px';
+                coin.style.background = 'radial-gradient(circle, #ffd700, #ffed4e)';
+                coin.style.borderRadius = '50%';
+                coin.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.8)';
+                coin.style.pointerEvents = 'none';
+                coin.style.zIndex = '5';
+                document.body.appendChild(coin);
+
+                gsap.to(coin, {
+                    y: window.innerHeight + 100,
+                    opacity: 0,
+                    duration: Math.random() * 3 + 4,
+                    delay: Math.random() * 0.5,
+                    ease: 'none',
+                    onComplete: () => coin.remove()
+                });
+
+                gsap.to(coin, {
+                    x: (Math.random() - 0.5) * 200,
+                    rotation: Math.random() * 720,
+                    duration: Math.random() * 3 + 4,
+                    ease: 'sine.inOut'
+                });
+            }
+        }
+
+        // Create brick masonry animation for volunteer mission
+        function createBrickMasonry() {
+            const form = document.querySelector('.form-section');
+            form.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+            
+            gsap.fromTo(form,
+                { clipPath: 'polygon(0 0, 0% 0, 0% 100%, 0 100%)' },
+                {
+                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                    duration: 1,
+                    ease: 'power2.out'
+                }
+            );
+        }
+
+        // Create data stream glitch effect for contact mission
+        function createDataStreams() {
+            const hero = document.querySelector('.hero');
+            gsap.to(hero, {
+                skewY: 2,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true,
+                ease: 'power1.inOut'
+            });
+        }
+
+        // Create floating crystal orbs for info mission
+        function createCrystalOrbs() {
+            for (let i = 0; i < 3; i++) {
+                const orb = document.createElement('div');
+                orb.style.position = 'fixed';
+                orb.style.width = '60px';
+                orb.style.height = '60px';
+                orb.style.left = Math.random() * 100 + '%';
+                orb.style.top = Math.random() * 50 + '%';
+                orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(0, 255, 204, 0.6), transparent)';
+                orb.style.borderRadius = '50%';
+                orb.style.pointerEvents = 'none';
+                orb.style.zIndex = '2';
+                orb.style.filter = 'blur(15px)';
+                document.body.appendChild(orb);
+
+                gsap.to(orb, {
+                    y: -100,
+                    opacity: 0,
+                    duration: 4,
+                    delay: i * 0.3,
+                    ease: 'sine.out',
+                    onComplete: () => orb.remove()
+                });
+            }
+        }
+
+        // Form validation
+        function setupFormValidation() {
+            const form = document.getElementById('action-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Check honeypot
+                const honeypot = form.querySelector('input[name="website"]');
+                if (honeypot.value) {
+                    console.log('Spam detected');
+                    return;
+                }
+
+                // Validate form
+                if (!form.checkValidity()) {
+                    alert('Veuillez remplir tous les champs requis');
+                    return;
+                }
+
+                // Get form data
+                const formData = new FormData(form);
+                const name = formData.get('name') || 'Aventurier';
+
+                // Save to localStorage
+                localStorage.setItem(`nexus_${currentMission}_${Date.now()}`, JSON.stringify(Object.fromEntries(formData)));
+
+                // Show thank you modal
+                showThankYouModal(name);
+
+                // Trigger mission-specific effects
+                if (currentMission === 'donate') {
+                    createConfetti();
+                }
+
+                // Reset form
+                form.reset();
+            });
+        }
+
+        // Show thank you modal
+        function showThankYouModal(name) {
+            const modal = document.getElementById('thank-you-modal');
+            const messageEl = document.getElementById('modal-message');
+            const config = missions[currentMission];
+
+            messageEl.textContent = `GG ${name}! ${config.thankYouMessage}`;
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+
+            setTimeout(() => {
+                closeModal();
+            }, 4000);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('thank-you-modal');
+            gsap.to(modal, {
+                opacity: 0,
+                duration: 0.4,
+                onComplete: () => {
+                    modal.classList.remove('active');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        }
+
+        // Confetti animation
+        function createConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+
+            const particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    size: Math.random() * 5 + 2,
+                    speedX: (Math.random() - 0.5) * 8,
+                    speedY: Math.random() * 5 + 3,
+                    color: ['#ffd700', '#50ff99', '#00ffcc', '#ff00ff'][Math.floor(Math.random() * 4)],
+                    rotation: Math.random() * 360
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.speedY += 0.1; // gravity
+                    p.rotation += 5;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+
+                    if (p.y > canvas.height) particles.splice(i, 1);
+                });
+
+                if (particles.length > 0) requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
